@@ -6,6 +6,10 @@
 parameters:
 
 services:
+    App\Controller\Admin\AdminUserController:
+        calls:
+            - method: setContainer
+              arguments: ['@service_container']
     # default configuration for services in *this* file
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.

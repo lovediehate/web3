@@ -1,7 +1,17 @@
 {% extends 'main/base.html.twig' %}
 {% block body %}
+<a href="{{ path('about') }}">О проекте</a><br>
+
+{% if (app.user) %}
+    Добрый день, {{ app.user.username }}, <a href="{{ path('app_logout') }}">Выйти</a>
+{% else %}
+    <a href="{{ path('app_login') }}">Войти</a><br>
+    <a href="{{ path('signup') }}">Регистрация</a><br>
+{% endif %}
+
 
 <h1>
     {{ title }}
 </h1>
+
 {% endblock %}

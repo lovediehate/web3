@@ -35,6 +35,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="string")
      */
     private $password;
+    
+    private $plainPassword;
 
     public function getId(): ?int
     {
@@ -91,11 +93,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @see PasswordAuthenticatedUserInterface
+     * @see UserInterface
      */
     public function getPassword(): string
     {
-        return $this->password;
+        return (string) $this->password;
     }
 
     public function setPassword(string $password): self
@@ -124,4 +126,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+    public function setPlainPassword($password)
+    {
+        $this->plainPassword = $password;
+    }
+    
 }

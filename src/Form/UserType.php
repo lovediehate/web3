@@ -1,35 +1,55 @@
 <?php
 
 namespace App\Form;
-
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Validator\Constraints\Email;
+use Symfony\Component\Validator\Constraints\IsTrue;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Regex;
 class UserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email', EmailType::class, array(
-                'label' => 'Введите email'
-            ))
-            ->add('plainPassword', RepeatedType::class, array(
-                'type' => PasswordType::class,
-                'first_options' => array(
-                    'label' => 'Пароль',
-                ),
-                'second_options' => array(
-                    'label' => 'Повтор пароля'
-                )
-            ))
-            ->add('save', SubmitType::class, array(
-                'label' => 'Сохранить'
-            ));
+        ->add('email', EmailType::class, [
+            'required' => true,
+            'constraints' => [
+                new Email([
+                    'message' => 'Email введен не корректно!',
+                ]),
+                new Length([
+                    'max' => 180,
+                ]),
+            ],
+            'label' => 'Email',
+            'attr' => [
+                'class' => 'validate',
+            ],
+        ])
+        ->add('plainPassword', PasswordType::class, [
+            'mapped' => false,
+            'attr' => ['autocomplete' => 'new-password'],
+            'label' => 'Пароль',
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Пожалуйста, введите пароль',
+                ]),
+                new Length([
+                    'min' => 6,
+                    'minMessage' => 'Ваш пароль должен быть не менее {{ limit }} символов',
+                    'max' => 4096,
+                    'maxMessage' => 'Максимальное число символов - {{ limit }}',
+                ]),
+            ],
+        ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

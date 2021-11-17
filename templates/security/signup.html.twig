@@ -1,9 +1,35 @@
 {% extends 'main/base.html.twig' %}
 {% block body %}
 
-    <h1>
-        {{ title }}
-    </h1>
-    {{ form(form) }}
+   <div class="p-8 pb-36 static w-screen flex-grow">
+        <h2 class="font-bold text-center text-2xl">Регистрация</h2>
+        {% if error is defined %}
+            <p class="flex justify-center items-center text-center text-red-500 text-2xl">{{ error }}</p>
+        {% endif %}
+        <div class="flex justify-center ">
+            <div class="relative flex-column w-80 justify-center items-center">
+                {{ form_start(form) }}
+                <div class="flex flex-row mt-6  items-center h-10">
+                    {{ form_label(form.email, null,
+                        form_errors(form.email)|length ? { 'label_attr': {'class': 'text-center items-center w-24'} } :
+                        {'label_attr': {'class': 'text-center items-center w-24'}}) }}
+                    {{ form_widget(form.email, {'attr': {'class': 'focus:outline-none p-1 absolute right-0 items-center rounded-full border-solid border border-black w-56 h-10 '}}) }}                    
+                </div>
+                <span class="w-full flex justify-center absolute text-red-500 text-xs italic">{{ form_errors(form.email) }}</span>
+                
 
+               <div class="flex flex-row mt-6  items-center h-10">
+                    {{ form_label(form.plainPassword, null,
+                        form_errors(form.plainPassword)|length ? { 'label_attr': {'class': 'text-center items-center w-24'} } :
+                        {'label_attr': {'class': 'text-center items-center w-24'}}) }}
+                    {{ form_widget(form.plainPassword, {'attr': {'class': 'focus:outline-none p-1 absolute right-0 items-center rounded-full border-solid border border-black w-56 h-10 '}}) }}                    
+                </div>
+                <span class="w-full flex justify-center absolute text-red-500 text-xs italic">{{ form_errors(form.plainPassword) }}</span>
+                <div class="text-center mt-5">
+                    <button type="submit" class="bg-black text-white w-40 h-10 rounded mb-5">Зарегистрироваться</button>
+                </div>    
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
 {% endblock %}

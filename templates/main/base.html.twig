@@ -5,8 +5,8 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
-        {% block stylesheets %}
-            {#{{ encore_entry_link_tags('app') }}#}
+       {% block stylesheets %}
+        <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
         {% endblock %}
 
         {% block javascripts %}
@@ -14,6 +14,44 @@
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <div class="flex flex-col h-screen">
+    
+        
+        <header class="bg-black">
+            <div class="flex flex-row justify-between items-center top-floor h-20 border-b-2 bg-opacity-70">
+                <ul class="flex flex-row justify-between text-lg ml-10 mr-10 mt-10 w-1/5 text-red-50 text-base h-full w-full">
+                    <li>
+                        <a class = "mt-8"href="{{ path('about') }}">О проекте</a><br>
+                    </li>
+                    <li class="w-auto">
+                        {% if (app.user) %}
+                        <ul class="flex flex-row">
+                            <li class="w-auto  ml-5">
+                                Добрый день, {{ app.user.username }} 
+                            </li>
+                            <li class="w-auto  ml-5">
+                                <a href="{{ path('app_logout') }}">Выйти</a>
+                            </li>
+                        </ul>
+                        {% else %} 
+                        <ul class="flex flex-row">
+                            <li class="w-auto ml-5">
+                                <a href="{{ path('app_login') }}">Войти</a><br></li>
+                            </li>
+                            <li class="w-auto ml-5">
+                                <a href="{{ path('signup') }}">Регистрация</a><br></li>
+                            </li>
+                         </ul>
+                        {% endif %}
+                    </li>
+            </div>
+            </header>
+            
+            {% block body %}
+            <h1>
+                {{ title }}
+            </h1>
+            {% endblock %}
+         </div>
     </body>
 </html>

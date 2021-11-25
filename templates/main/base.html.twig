@@ -29,9 +29,17 @@
                             <li class="w-auto  ml-5">
                                 Добрый день, {{ app.user.username }} 
                             </li>
+                            
+                            {% if is_granted('ROLE_ADMIN') %}
+                            <li class="w-auto  ml-5">
+                                <a href="{{ path('admin_home') }}">Админ панель</a>
+                            </li>
+                            {% endif %}
+
                             <li class="w-auto  ml-5">
                                 <a href="{{ path('app_logout') }}">Выйти</a>
                             </li>
+                            
                         </ul>
                         {% else %} 
                         <ul class="flex flex-row">

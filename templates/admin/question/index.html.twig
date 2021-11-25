@@ -1,0 +1,14 @@
+{% extends 'admin/adminbase.html.twig' %}
+{% block body %}
+
+    <h1>
+        {{ title }}
+    </h1>
+    <a href="{{ path('admin_create_question') }}">Создать вопрос</a><br>
+    <ul>
+        {% for question in questions %}
+            <li>{{ question.title }}</li>
+        {% endfor %}
+    </ul> 
+
+{% endblock %}

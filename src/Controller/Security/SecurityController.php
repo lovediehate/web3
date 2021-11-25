@@ -9,7 +9,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use App\Entity\User;
 use App\Form\UserType;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use App\Controller\Main\BaseController;
 
 class SecurityController extends BaseController
@@ -33,10 +33,9 @@ class SecurityController extends BaseController
      /**
      * @Route("/signup", name="signup")
      * @param Request $request
-     * @param UserPasswordEncoderInterface $passwordEncoder
      * @return RedirectResponse|Response
      */
-    public function signup(Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    public function signup(Request $request, UserPasswordHasherInterface $passwordEncoder)
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
@@ -45,8 +44,9 @@ class SecurityController extends BaseController
 
         if(($form->isSubmitted()) && ($form->isValid()))
         {
-            $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
+            $password = $passwordEncoder->hashPassword($user, $form->get('plainPassword')->getData());
             $user->setPassword($password);
+            $user->setRoles(['ROLE_USER']);
             $em->persist($user);
             $em->flush();
 

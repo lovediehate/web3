@@ -9,7 +9,7 @@ class AdminBaseController extends AbstractController
     public function renderDefault()
     {
         return [
-            'title' => 'Сайт web3 for admin'
+            'title' => 'Панель администратора'
         ];
     }
 }

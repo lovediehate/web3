@@ -9,7 +9,7 @@ class BaseController extends AbstractController
     public function renderDefault()
     {
         return [
-            'title' => 'Сайт web3'
+            'title' => 'Веб-сайт QA'
         ];
     }
 }

@@ -1,17 +1,24 @@
 {% extends 'admin/adminbase.html.twig' %}
-{% block body %}
 
-    <a class = "bg-green-700 border-none text-center no-underline inline-block text-base text-white" href="{{ path('admin_create') }}">Создать пользователя</a><br>
-    <div class="container flex flex-col justify-left">
-        <h2>
+{% block body %}
+    <a class = "bg-green-700 border-none text-center no-underline inline-block text-base text-white" 
+    href="{{ path('admin_create_question') }}">Создать пользователя</a>
+    <br>
+    <div class="container flex flex-col justify-left ml-5 w-full border">
+        <h1 class="text-xl ml-5">
             {{ title }}
-        </h2>
+        </h1>
         <br>
         <ul>
-            {% for user in users %}
-                <li>{{user.id }} {{ user.email }}, {{user.roles | json_encode}}</li>
+            {% for user in users  %}
+                <li>
+                    <div class="bg-gray-100 p-2 flex-grow border break-words">
+                        <h1 class="font-medium">id:</h1> {{ user.id }} <br>
+                        <h1 class="font-medium">Почта:</h1> {{ user.email }} <br>
+                        <h1 class="font-medium">Роль:</h1> {{user.roles | json_encode}} <br>
+                    </div>
+                </li>
             {% endfor %}
         </ul> 
     </div>
-
 {% endblock %}

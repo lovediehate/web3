@@ -1,14 +1,29 @@
 {% extends 'admin/adminbase.html.twig' %}
-{% block body %}
 
-    <h1>
-        {{ title }}
-    </h1>
-    <a href="{{ path('admin_create_question') }}">Создать вопрос</a><br>
-    <ul>
-        {% for question in questions %}
-            <li>{{ question.title }}</li>
-        {% endfor %}
-    </ul> 
+{% block body %}
+    <a class = "bg-green-700 border-b text-center no-underline inline-block text-base text-white" 
+    href="{{ path('admin_create_question') }}">Создать вопрос</a>
+    <a class = "bg-green-700 border-b text-center no-underline inline-block text-base text-white" 
+    href="{{ path('home') }}">Редактировать вопрос</a>
+     <a class = "bg-red-700 border-b text-center no-underline inline-block text-base text-white" 
+    href="{{ path('home') }}">Удалить вопрос</a>
+    <br>
+    <div class="container flex flex-col justify-left ml-5 w-full border">
+        <h1 class="text-xl ml-5">
+            {{ title }}
+        </h1>
+        <br>
+        <ul>
+            {% for question in questions %}
+                <li>
+                    <div class="bg-gray-100 p-2 flex-grow border break-words">
+                        <h1 class="font-medium">id:</h1> {{ question.id }} <br>
+                        <h1 class="font-medium">Заголовок:</h1> {{ question.title }} <br>
+                        <h1 class="font-medium">Текст вопроса:</h1> {{ question.content }} <br>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul> 
+    </div>
 
 {% endblock %}

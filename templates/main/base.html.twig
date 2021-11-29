@@ -17,11 +17,14 @@
         <div class="flex flex-col h-screen">
     
         
-        <header class="bg-black">
+        <header class="bg-purple-500">
             <div class="flex flex-row justify-between items-center top-floor h-20 border-b-2 bg-opacity-70">
                 <ul class="flex flex-row justify-between text-lg ml-10 mr-10 mt-10 w-1/5 text-red-50 text-base h-full w-full">
                     <li>
                         <a class = "mt-8"href="{{ path('about') }}">О проекте</a><br>
+                    </li>
+                    <li>
+                        <a class = "mt-8"href="{{ path('home') }}">Главная</a><br>
                     </li>
                     <li class="w-auto">
                         {% if (app.user) %}
@@ -59,6 +62,9 @@
             <h1>
                 {{ title }}
             </h1>
+            <a class = "bg-green-700 border-b text-center no-underline inline-block text-base text-white" 
+    href="{{ path('question') }}">Задать вопрос</a>
+    <br>
             {% endblock %}
          </div>
     </body>

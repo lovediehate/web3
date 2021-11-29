@@ -1,18 +1,18 @@
-{% extends 'admin/adminbase.html.twig' %}
+{% extends 'main/base.html.twig' %}
 {% form_theme form 'theme.html.twig' %}
+
 {% block body %}
-    
     {{ form_start(form, { 'attr': {'class': 'w-full max-w-sm m-auto'} }) }}
-    {{ form_row(form.title) }}
+    {{ form_row(form.title, {'value': app.request.get('title')} ) }}
+    {{ form_row(form.content)}}
+    {{ form_row(form.category) }}
     <div class="md:flex md:items-center">
         <div class="md:w-1/3"></div>
             <div class="md:w-2/3">
                 {{ form_widget(form.save, {'attr' : {'class' : 'text-white font-bold shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none rounded py-2 px-4 '}})}}
-                {{ form_widget(form.delete, {'attr' : {'class' : 'text-white font-bold shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none rounded py-2 px-4 '}})}}
             </div>
         </div>
     </div>
-   
     {{ form_end(form) }}
 
 {% endblock %}

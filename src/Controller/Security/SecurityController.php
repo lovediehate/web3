@@ -44,6 +44,13 @@ class SecurityController extends BaseController
 
         if(($form->isSubmitted()) && ($form->isValid()))
         {
+            $user->setEmail($form->get('email')->getData());
+            if (null != $this->getDoctrine()->getRepository(User::class)->findOneBy(['email' => $user->getEmail()])) {
+                return $this->render('security/signup.html.twig', [
+                    'form' => $form->createView(),
+                    'error' => 'Пользователь с введенным email уже существует'
+                ]);
+            }
             $password = $passwordEncoder->hashPassword($user, $form->get('plainPassword')->getData());
             $user->setPassword($password);
             $user->setRoles(['ROLE_USER']);

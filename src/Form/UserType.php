@@ -13,7 +13,8 @@ use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Validator\Constraints\Regex;
+
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 class UserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -49,7 +50,10 @@ class UserType extends AbstractType
                     'maxMessage' => 'Максимальное число символов - {{ limit }}',
                 ]),
             ],
-        ]);
+        ])
+        ->add('save', SubmitType::class, array(
+            'label' => 'Зарегистрировать'
+        ));
     }
 
     public function configureOptions(OptionsResolver $resolver)

@@ -1,1 +1,11 @@
 {% extends 'main/base.html.twig' %}
+{% form_theme form 'theme.html.twig' %}
+{% block body %}
+<div class="flex justify-center">
+    {{ form_start(form, { 'attr': {'class': 'w-full flex flex-row max-w-2xl mt-5'} }) }}
+    {{ form_widget(form.title) }}
+    {{ form_widget(form.save, 
+    {'attr' : {'class' : 'w-36 text-white whitespace-nowrap font-bold shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none rounded py-2 px-4'}})}}
+    {{ form_end(form) }}
+</div>
+{% endblock %}

@@ -33,7 +33,7 @@ class Answer
     private $update_at;
 
     /**
-     * @ORM\ManyToOne(targetEntity=question::class)
+     * @ORM\ManyToOne(targetEntity=Question::class)
      * @ORM\JoinColumn(nullable=false)
      */
     private $question;

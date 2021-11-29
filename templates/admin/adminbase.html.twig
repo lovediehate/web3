@@ -18,7 +18,7 @@
      <div class="flex flex-col h-screen">
     
         
-        <header class="bg-black">
+        <header class="bg-purple-500">
             <div class="flex flex-row justify-between items-center top-floor h-20 border-b-2 bg-opacity-70">
                 <ul class="flex flex-row justify-between text-lg ml-10 mr-10 mt-10 w-1/5 text-red-50 text-base h-full w-full">
                     <li class="text-2xl">
@@ -30,17 +30,14 @@
                             <li class="w-auto  ml-5">
                                 Добрый день, {{ app.user.username }} 
                             </li>
-                            
-                            {% if is_granted('ROLE_ADMIN') %}
+
                             <li class="w-auto  ml-5">
                                  <a href="{{ path('home') }}">Выход на главную</a>
                             </li>
-                            {% endif %}
 
                             <li class="w-auto  ml-5">
                                 <a href="{{ path('app_logout') }}">Выйти</a>
                             </li>
-                            
                         </ul>
                         {% else %} 
                         <ul class="flex flex-row">
@@ -55,7 +52,7 @@
                     </li>
             </div>
             </header>
-            <header class="bg-gray-700">
+            <header class="bg-gray-500">
             <div class="flex flex-row justify-between items-center top-floor h-20 border-b-2 bg-opacity-70">
                 <ul class="flex flex-row justify-between text-lg ml-10 mr-10 mt-10 w-1/5 text-red-50 text-base h-full w-full">
                     <li class="text-2xl ml-5">
@@ -68,31 +65,12 @@
                                <a href="{{ path('admin_question') }}">Вопросы</a>
                             </li>
                             <li class="w-auto  ml-5">
-                               <a href="{{ path('home') }}">Ответы</a>
+                               <a href="{{ path('admin_answer') }}">Ответы</a>
                             </li>
                             <li class="w-auto  ml-5">
                                <a href="{{ path('admin_category') }}">Категории</a>
                             </li>
-                    <li class="w-auto">
-                        {% if (app.user) %}
-                        <ul class="flex flex-row">
-                            
-                            <li class="w-auto  ml-5">
-                                <a href="{{ path('app_logout') }}">Выйти</a>
-                            </li>
-                            
-                        </ul>
-                        {% else %} 
-                        <ul class="flex flex-row">
-                            <li class="w-auto ml-5">
-                                <a href="{{ path('app_login') }}">Войти</a><br></li>
-                            </li>
-                            <li class="w-auto ml-5">
-                                <a href="{{ path('signup') }}">Регистрация</a><br></li>
-                            </li>
-                         </ul>
-                        {% endif %}
-                    </li>
+                    
             </div>
             </header>
    

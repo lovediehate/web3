@@ -1,22 +1,17 @@
 {% extends 'admin/adminbase.html.twig' %}
 {% block body %}
-    <a class = "bg-green-700 border-none text-center no-underline inline-block text-base text-white" 
-    href="{{ path('admin_create_question') }}">Создать категорию</a>
     <br>
     <div class="container flex flex-col justify-left ml-5 w-full border">
         <h1 class="text-xl ml-5">
             {{ title }}
         </h1>
         <br>
-        {% for message in app.flashes('success') %}
-            {{ message }}
-        {% endfor %}
         <ul>
-            {% for category in categories %}
+            {% for answer in answers %}
                 <li>
                     <div class="bg-gray-100 p-2 flex-grow border break-words">
-                        <h1 class="font-medium">id:</h1> {{ category.id }} <br>
-                        <h1 class="font-medium">Заголовок:</h1> {{ category.title }} <br>
+                        <h1 class="font-medium">id:</h1> {{ answer.id }} <br>
+                        <h1 class="font-medium">Текст:</h1> {{ answer.title }} <br>
                     </div>
                 </li>
             {% endfor %}

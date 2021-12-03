@@ -42,7 +42,11 @@ class Question
      * @ORM\JoinColumn(nullable=false)
      */
     private $category;
-
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class)
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $user;
     public function getId(): ?int
     {
         return $this->id;
@@ -112,6 +116,17 @@ class Question
     public function setCategory(?category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+    public function getUser(): ?user
+    {
+        return $this->user;
+    }
+
+    public function setUser(?user $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

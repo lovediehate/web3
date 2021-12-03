@@ -41,7 +41,7 @@ class AdminQuestionController extends AdminBaseController
         {
             $question->setCreatedAtValue();
             $question->setUpdateAtValue();
-
+            $question->setUser($this->getUser());
             $em->persist($question);
             $em->flush();
             $this->addFlash('success', 'Вопрос добавлен!');

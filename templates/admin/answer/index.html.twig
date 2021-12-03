@@ -11,7 +11,8 @@
                 <li>
                     <div class="bg-gray-100 p-2 flex-grow border break-words">
                         <h1 class="font-medium">id:</h1> {{ answer.id }} <br>
-                        <h1 class="font-medium">Текст:</h1> {{ answer.title }} <br>
+                        <h1 class="font-medium">User:</h1> {{ answer.user.email }} <br>
+                        <h1 class="font-medium">Текст:</h1> {{ answer.content }} <br>
                     </div>
                 </li>
             {% endfor %}

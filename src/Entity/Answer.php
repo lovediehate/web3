@@ -37,6 +37,11 @@ class Answer
      * @ORM\JoinColumn(nullable=false)
      */
     private $question;
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class)
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $user;
 
     public function getId(): ?int
     {
@@ -95,6 +100,17 @@ class Answer
     public function setQuestion(?question $question): self
     {
         $this->question = $question;
+
+        return $this;
+    }
+    public function getUser(): ?user
+    {
+        return $this->user;
+    }
+
+    public function setUser(?user $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

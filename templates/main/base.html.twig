@@ -21,10 +21,17 @@
             <div class="flex flex-row justify-between items-center top-floor h-20 border-b-2 bg-opacity-70">
                 <ul class="flex flex-row justify-between text-lg ml-10 mr-10 mt-10 w-1/5 text-red-50 text-base h-full w-full">
                     <li>
-                        <a class = "mt-8"href="{{ path('about') }}">О проекте</a><br>
-                    </li>
-                    <li>
-                        <a class = "mt-8"href="{{ path('home') }}">Главная</a><br>
+                        <div>
+                            <ul class="flex flex-row">
+                                <li class="mr-5">
+                                    <a class = "mt-8"href="{{ path('about') }}">О проекте</a><br>
+                                </li>
+                                
+                                <li>
+                                    <a class = "mt-8"href="{{ path('home') }}">Главная</a><br>
+                                </li>
+                            </ul>
+                        <div>
                     </li>
                     <li class="w-auto">
                         {% if (app.user) %}

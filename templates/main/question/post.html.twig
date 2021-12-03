@@ -1,0 +1,79 @@
+{% extends 'main/base.html.twig' %}
+{% form_theme form 'theme.html.twig' %}
+{% block body %}
+<div class="flex flex-row mb-10">
+    <div class="mt-10 mx-10 absolute">
+    {{ question.category.title }}
+    </div>
+    <div class ="bg-gray-50 mx-48 mt-5 w-screen">
+        <ul class="flex flex-col">
+            <li>
+                <ul class="flex flex-row justify-between">
+                    <li class="text-m m-5">
+                    {% if question.user is not null %}
+                    {{ question.user.email }}
+                    {% else %}
+                    Автор неизвестен
+                    {% endif %}
+                    </li>
+                    <ul class="flex flex-row">
+                        <li>
+                            <span class="text-sm m-5">Создан: {{ question.CreatedAt|date('Y-m-d H:i') }}</span>
+                        </li>
+                        {% if question.UpdateAt != question.CreatedAt %}
+                        <li>
+                            <span class="text-sm m-5">Изменён: {{ question.UpdateAt|date('Y-m-d H:i') }}</span>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </ul>
+            </li>
+            <li class="text-3xl m-5">
+                {{ question.title }}
+            </li>
+            <li class="text-xl m-5">
+                {{ question.content }}
+            </li>
+        </ul>
+        
+    </div>
+    
+</div>
+{% if app.user %}
+<div>
+    {{ form_start(form) }}
+    <div class="flex flex-col">
+        <div class="md:w-2/3 mx-auto">
+            {{ form_widget(form.content, {'attr': {'class': 'bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500'}}) }}                    
+        </div>
+        <div class="md:flex md:items-center mx-auto">
+            <div class="md:w-2/3">
+                {{ form_widget(form.save, {'attr' : {'class' : 'text-white font-bold shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none rounded py-2 px-4 '}})}}
+            </div>
+        </div>
+    </div>
+     {{ form_end(form) }}
+</div>
+{% endif %}
+<div class="flex flex-col ml-48 bg-gray-50 p-5 mt-10">
+    <h1 class="text-3xl ml-10">Ответы<h1>
+    <ul>
+        {% for answer in answers %}
+        <li class="border border-solid p-5">
+            <div class="flex flex-row justify-between">
+                <div class="text-m">
+                    {{ answer.user.email }}
+                </div>
+                <div class="text-xs">
+                    {{ answer.CreateAt|date('Y-m-d H:i') }}
+                </div>
+            </div>
+            <div class="text-xl">
+                {{ answer.content }}
+            </div>
+            
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

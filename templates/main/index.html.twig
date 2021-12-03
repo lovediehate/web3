@@ -8,4 +8,26 @@
     {'attr' : {'class' : 'w-36 text-white whitespace-nowrap font-bold shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none rounded py-2 px-4'}})}}
     {{ form_end(form) }}
 </div>
+{% else %}
+{% endif %}
+<div class="mt-10 mx-auto">
+    <span>
+        {% for message in app.flashes('success') %}
+            {{ message }}
+        {% endfor %}
+    </span>
+    <h1 class = "m-5 text-2xl">Вопросы участников</h1>
+    <ul class="bg-gray-50">
+        {% for question in questions %}
+        <li class="flex flex-col max-w-3xl p-5 border border-solid">
+            <div class="truncate"> <a href="{{ path('post', {'id': question[1].id}) }}">{{ question[1].title }}</a> </div>
+            <div class="flex flex-row justify-between">
+                <div class="mt-5"> Кол-во ответов: {{ question[0] }} </div>
+                <div class="mt-5 ml-10"> {{ question[1].createdat|date('Y-m-d H:i')}}</div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    
+</div>
 {% endblock %}

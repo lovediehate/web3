@@ -2,6 +2,7 @@
 {% form_theme form 'theme.html.twig' %}
 
 {% block body %}
+{% if app.user %}
     {{ form_start(form, { 'attr': {'class': 'w-full max-w-sm m-auto'} }) }}
     {{ form_row(form.title, {'value': app.request.get('title')} ) }}
     {{ form_row(form.content)}}
@@ -14,5 +15,9 @@
         </div>
     </div>
     {{ form_end(form) }}
-
+    {% else %}
+    <div class="text-center p-10">
+        Чтобы задать вопрос, необходимо <a href="{{ path('app_login') }}" class="text-xl text-purple-700">авторизоваться.</a>
+    </div>
+{% endif %}
 {% endblock %}
